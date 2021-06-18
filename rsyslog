@@ -1,0 +1,3 @@
+# 查询是否安装
+[root@Centos8 ~]# rpm -qa |grep rsyslog
+rsyslog-8.1911.0-7.el8.x86_64
