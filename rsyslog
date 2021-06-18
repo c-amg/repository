@@ -1,3 +1,5 @@
 # 查询是否安装
 [root@Centos8 ~]# rpm -qa |grep rsyslog
 rsyslog-8.1911.0-7.el8.x86_64
+# 如果未安装使用以下命令安装即可
+yum install rsyslog
