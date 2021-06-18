@@ -22,27 +22,27 @@ vim /etc/rsyslog.conf
 module(load="imuxsock"    # provides support for local system logging (e.g. via logger command)        # 提供对本地日志的支持
        SysSock.Use="off") # Turn off message reception via local log socket;  # 通过本地日志套接字关闭消息接收
                           # local messages are retrieved through imjournal now.  #  现在通过Imjournal检索本地消息
-module(load="imjournal"             # provides access to the systemd journal
-       StateFile="imjournal.state") # File to store the position in the journal
-#module(load="imklog") # reads kernel messages (the same are read from journald)
+module(load="imjournal"             # provides access to the systemd journal     # 提供对Systemd Journal的访问
+       StateFile="imjournal.state") # File to store the position in the journal  # 存放在日志中的位置
+#module(load="imklog") # reads kernel messages (the same are read from journald)  # 读取内核消息
 #module(load="immark") # provides --MARK-- message capability
 
-# Provides UDP syslog reception
-# for parameters see http://www.rsyslog.com/doc/imudp.html
-#module(load="imudp") # needs to be done just once
-#input(type="imudp" port="514")
+# Provides UDP syslog reception        # UDP提供系统日志接收
+# for parameters see http://www.rsyslog.com/doc/imudp.html   # 参数查看
+#module(load="imudp") # needs to be done just once   # 只需要做一次
+#input(type="imudp" port="514")       
 
-# Provides TCP syslog reception
-# for parameters see http://www.rsyslog.com/doc/imtcp.html
+# Provides TCP syslog reception     # 提供TCPsyslog的接收
+# for parameters see http://www.rsyslog.com/doc/imtcp.html  #参数查看此网页
 #module(load="imtcp") # needs to be done just once
 #input(type="imtcp" port="514")
 
-#### GLOBAL DIRECTIVES ####
+#### GLOBAL DIRECTIVES ####  # 全局模块
 
-# Where to place auxiliary files
-global(workDirectory="/var/lib/rsyslog")
+# Where to place auxiliary files  # 放置辅助文件的位置
+global(workDirectory="/var/lib/rsyslog")   
 
-# Use default timestamp format
+# Use default timestamp format   # 使用默认的时间戳
 module(load="builtin:omfile" Template="RSYSLOG_TraditionalFileFormat")
 
 # Include all config files in /etc/rsyslog.d/
@@ -50,7 +50,7 @@ include(file="/etc/rsyslog.d/*.conf" mode="optional")
 
 #### RULES ####
 
-# Log all kernel messages to the console.
+# Log all kernel messages to the console.   #将所有内核消息记录到服务台
 # Logging much else clutters up the screen.
 #kern.*                                                 /dev/console
 
@@ -78,16 +78,16 @@ uucp,news.crit                                          /var/log/spooler
 local7.*                                                /var/log/boot.log
 
 
-# ### sample forwarding rule ###
+# ### sample forwarding rule ###    # 示例转发规则
 #action(type="omfwd"  
-# An on-disk queue is created for this action. If the remote host is
-# down, messages are spooled to disk and sent when it is up again.
+# An on-disk queue is created for this action. If the remote host is   # 为此操作创建磁盘队列
+# down, messages are spooled to disk and sent when it is up again.   # 向下，邮件向磁盘进行假，并在再次启动时发送。
 #queue.filename="fwdRule1"       # unique name prefix for spool files
 #queue.maxdiskspace="1g"         # 1gb space limit (use as much as possible)
 #queue.saveonshutdown="on"       # save messages to disk on shutdown
 #queue.type="LinkedList"         # run asynchronously
 #action.resumeRetryCount="-1"    # infinite retries if host is down
-# Remote Logging (we use TCP for reliable delivery)
+# Remote Logging (we use TCP for reliable delivery)   # 远程日志，使用TCP传输
 # remote_host is: name/ip, e.g. 192.168.0.1, port optional e.g. 10514
 #Target="remote_host" Port="XXX" Protocol="tcp")
 
