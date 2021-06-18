@@ -1,1 +1,8 @@
-# repository
+# 安装git
+[root@Centos8 ~]# yum install git -y
+# 克隆代码
+[root@Centos8 ~]# git clone https://github.com/DIYgod/RSSHub.git
+[root@Centos8 ~]# cd RSSHub/
+# 安装npm
+[root@Centos8 RSSHub]# yum install npm
+
