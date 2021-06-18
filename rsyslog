@@ -29,13 +29,13 @@ module(load="imjournal"             # provides access to the systemd journal    
 
 # Provides UDP syslog reception        # UDP提供系统日志接收
 # for parameters see http://www.rsyslog.com/doc/imudp.html   # 参数查看
-#module(load="imudp") # needs to be done just once   # 只需要做一次
-#input(type="imudp" port="514")       
+module(load="imudp") # needs to be done just once   # 只需要做一次                                           # 取消此注释进行UDP监听514端口传输日志
+input(type="imudp" port="514")       
 
 # Provides TCP syslog reception     # 提供TCPsyslog的接收
 # for parameters see http://www.rsyslog.com/doc/imtcp.html  #参数查看此网页
-#module(load="imtcp") # needs to be done just once
-#input(type="imtcp" port="514")
+module(load="imtcp") # needs to be done just once                                                           # 取消此注释进行TCP监听514端口传输日志
+input(type="imtcp" port="514")
 
 #### GLOBAL DIRECTIVES ####  # 全局模块
 
@@ -92,6 +92,19 @@ local7.*                                                /var/log/boot.log
 #Target="remote_host" Port="XXX" Protocol="tcp")
 
 以上是配置文件内容
+下一步就是关闭防火墙
+systemctl restart rsyslog # 重启rsyslog服务
+systemctl enable rsyslog # 设置开机运行rsyslog
+netstat -pnltu # 确认服务器是否监听514端口
+
+tail -f /var/log/messages # 实时查看日志消息
 
 
 
+
+
+
+
+=========================================================================================================================================
+
+====================================rsyslog客户端配置====================================
