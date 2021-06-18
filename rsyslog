@@ -10,17 +10,18 @@ yum install rsyslog
 vim /etc/rsyslog.conf
 
 [root@Centos8 etc]# cat rsyslog.conf 
-# rsyslog configuration file
+# rsyslog configuration file    #日志记录工具配置文件
 
-# For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
-# or latest version online at http://www.rsyslog.com/doc/rsyslog_conf.html 
-# If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
 
-#### MODULES ####
+# For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html             # 有关更多信息请查询此目录文件
+# or latest version online at http://www.rsyslog.com/doc/rsyslog_conf.html        # 或最新版本
+# If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html    # 如果你遇到问题，请参阅此链接
 
-module(load="imuxsock"    # provides support for local system logging (e.g. via logger command)
-       SysSock.Use="off") # Turn off message reception via local log socket; 
-                          # local messages are retrieved through imjournal now.
+#### MODULES ####    # 模块
+
+module(load="imuxsock"    # provides support for local system logging (e.g. via logger command)        # 提供对本地日志的支持
+       SysSock.Use="off") # Turn off message reception via local log socket;  # 通过本地日志套接字关闭消息接收
+                          # local messages are retrieved through imjournal now.  #  现在通过Imjournal检索本地消息
 module(load="imjournal"             # provides access to the systemd journal
        StateFile="imjournal.state") # File to store the position in the journal
 #module(load="imklog") # reads kernel messages (the same are read from journald)
