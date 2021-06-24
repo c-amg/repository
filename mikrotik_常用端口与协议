@@ -5,4 +5,9 @@
 23/tcp              远程通信网络协议
 53/tcp              域名服务器DNS
 53/udp              域名服务器DNS
-67/udp              自举协议或DHCP服务器（仅与dhcp功能包一起）
+67/udp              自举协议或DHCP服务器
+68/udp              自举协议或DHCP客户
+80/tcp              万维网HTTP
+123/udp             网络时间协议NTP
+161/udp             简单网络管理协议SNMP
+443/tcp             安全接口层SSL加密HTTP
