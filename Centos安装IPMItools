@@ -1,0 +1,15 @@
+ yum install -y epel-release
+ yum install -y ipmitool
+ yum install -y OpenIPMI ipmitool
+ yum info OpenIPMI 
+ yum -ql
+ ipmitool -V 
+ modprobe ipmi_watchdog
+ modprobe ipmi_poweroff
+ modprobe ipmi_devintf
+ modprobe ipmi_msghandler
+ modprobe ipmi_si
+ lsmod | grep ipmi
+ systemctl start ipmi.service 
+ ipmitool -V
+ 
