@@ -1,4 +1,4 @@
 # Proxy-arp
 
-### 什么是代理ARP？
-
+### 什么是proxy ARP（代理ARP）？
+  proxy ARP就是通过使用一个主机(通常为router),来作为指定的设备对另一设备作出ARP请求的应答
