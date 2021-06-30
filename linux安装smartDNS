@@ -60,6 +60,7 @@ chmod +x ./install
 # 二、修改配置文件
 ```bash
 vi /etc/smartdns/smartdns.conf
+只需要增加server [IP]:port, server-tcp [IP]:port配置项
 ```
 # 三、开机启动smartDNS
 ```bash
